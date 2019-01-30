@@ -38,6 +38,13 @@ input {
   font-size: calc(6px + 2vmin);
 }
 
+.venues-list {
+  line-height: 30px;
+  font-size: 12px;
+  color: white;
+  list-style-type: none;
+}
+
 .Map-container {
   width: 100%;
 }

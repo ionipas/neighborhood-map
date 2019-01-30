@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import VenuesList from './components/VenuesList'
 
 class App extends Component {
   state = {
@@ -68,8 +69,9 @@ class App extends Component {
     return (
       <div className="App">
         <div class="search-box">
-            <p>Search places</p>
-            <input id="search" type="text" placeholder="Search..." />
+          <p>Search places</p>
+          <input id="search" type="text" placeholder="Search..." />
+          <VenuesList venues={this.state.venues} />
         </div>
         <div className="Map-container">
           <header className="App-header">
