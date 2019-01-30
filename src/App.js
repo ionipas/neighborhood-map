@@ -67,12 +67,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <p>
-            Bucharest, Romania Map
-          </p>
-        </header>
-        <div id="map"></div>
+        <div class="search-box">
+            <p>Search places</p>
+            <input id="search" type="text" placeholder="Search..." />
+        </div>
+        <div className="Map-container">
+          <header className="App-header">
+            <p>
+              Bucharest, Romania Map
+            </p>
+          </header>
+          <div id="map"></div>
+        </div>
       </div>
     );
   }
