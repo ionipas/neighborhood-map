@@ -17,22 +17,41 @@ class App extends Component {
           position: window.google.maps.ControlPosition.TOP_CENTER
       }
     })
+    const defaultIcon = this.makeMarkerIcon('708ec9');
+    const highlightedIcon = this.makeMarkerIcon('FFFF24');
 
     this.state.venues.map(item => {
       const marker = new window.google.maps.Marker({
         position: {lat: item.venue.location.lat, lng: item.venue.location.lng},
         map: map,
-        animation: window.google.maps.Animation.DROP
+        animation: window.google.maps.Animation.DROP,
+        icon: defaultIcon
       })
       const infowindow = new window.google.maps.InfoWindow({
         content: `<h3>` + item.venue.name + `</h3>` + `<p>` + item.venue.location.address + `</p>`
       })
       marker.addListener('click', function() {
         infowindow.open(map, marker)
+        this.setIcon(highlightedIcon)
+      })
+      infowindow.addListener('closeclick', function() {
+        marker.setIcon(defaultIcon)
       })
       return marker
     })
   }
+
+  makeMarkerIcon = (markerColor) => {
+    const markerImage = new window.google.maps.MarkerImage(
+      'http://chart.googleapis.com/chart?chst=d_map_spin&chld=1.15|0|'+ markerColor +
+      '|40|_|%E2%80%A2',
+      new window.google.maps.Size(21, 34),
+      new window.google.maps.Point(0, 0),
+      new window.google.maps.Point(10, 34),
+      new window.google.maps.Size(21,34));
+    return markerImage;
+  }
+
 
   renderMap = () => {
     const apiKey = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCNg9Wo4pmCaqkIVN4VXv7IlEQXOMbLitM&v=3&callback=initMap"
