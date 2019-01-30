@@ -11,6 +11,13 @@ class App extends Component {
       center: {lat: 44.43551, lng: 26.102526},
       zoom: 13
     })
+    this.state.venues.map(item => {
+      const marker = new window.google.maps.Marker({
+        position: {lat: item.venue.location.lat, lng: item.venue.location.lng},
+        map: map,
+        animation: window.google.maps.Animation.DROP
+      })
+    })
   }
 
   renderMap = () => {
@@ -26,7 +33,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.renderMap()
     this.exploreVenues()
   }
 
@@ -41,9 +47,9 @@ class App extends Component {
         venues: data.response.groups[0].items
       })
     })
+    .then(() => this.renderMap())
     .catch(err => console.log(err))
   }
-
 
   render() {
     return (
