@@ -4,7 +4,8 @@ import VenuesList from './components/VenuesList'
 
 class App extends Component {
   state = {
-    venues: []
+    venues: [],
+    markers:[]
   }
 
   initMap = () => {
@@ -25,7 +26,15 @@ class App extends Component {
         position: {lat: item.venue.location.lat, lng: item.venue.location.lng},
         map: map,
         animation: window.google.maps.Animation.DROP,
-        icon: defaultIcon
+        icon: defaultIcon,
+        id: item.venue.id
+      })
+      this.setState((state) => {
+        return {
+          markers: this.state.markers.concat([{
+            id: marker.id
+          }])
+        }
       })
       const infowindow = new window.google.maps.InfoWindow({
         content: `<h3>` + item.venue.name + `</h3>` + `<p>` + item.venue.location.address + `</p>`
