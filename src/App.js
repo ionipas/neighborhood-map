@@ -11,12 +11,20 @@ class App extends Component {
       center: {lat: 44.43551, lng: 26.102526},
       zoom: 13
     })
+
     this.state.venues.map(item => {
       const marker = new window.google.maps.Marker({
         position: {lat: item.venue.location.lat, lng: item.venue.location.lng},
         map: map,
         animation: window.google.maps.Animation.DROP
       })
+      const infowindow = new window.google.maps.InfoWindow({
+        content: `<h3>` + item.venue.name + `</h3>` + `<p>` + item.venue.location.address + `</p>`
+      })
+      marker.addListener('click', function() {
+        infowindow.open(map, marker)
+      })
+      return marker
     })
   }
 
