@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
+  state = {
+    venues: []
+  }
 
   initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
@@ -28,13 +31,19 @@ class App extends Component {
   }
 
   exploreVenues() {
-    fetch('https://api.foursquare.com/v2/venues/explore?client_id=AFQH0HM2AZBJP3FGVHJMVXL3RMMGWNPEPVVEXCUOJUG1HRA0&client_secret=O4I2FW3K3SCFYTBD2YJZGIUCF2D4JIXKF45VKGSDLSPB1WNT&v=20190130&limit=5&ll=44.435347,26.102419&query=coffee')
+    fetch('https://api.foursquare.com/v2/venues/explore?' +
+      'client_id=AFQH0HM2AZBJP3FGVHJMVXL3RMMGWNPEPVVEXCUOJUG1HRA0' +
+      '&client_secret=O4I2FW3K3SCFYTBD2YJZGIUCF2D4JIXKF45VKGSDLSPB1WNT'+
+      '&v=20190130&limit=10&ll=44.435347,26.102419&query=coffee')
     .then(res => res.json())
     .then(data => {
-      console.log(data.response.groups[0].items)
+      this.setState ({
+        venues: data.response.groups[0].items
+      })
     })
     .catch(err => console.log(err))
   }
+
 
   render() {
     return (
