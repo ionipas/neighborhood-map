@@ -88,7 +88,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="search-box">
-          <p>Search places</p>
+          <p className="search-label">Search places</p>
           <input id="search" type="text" placeholder="Search..." />
           <VenuesList venues={this.state.venues} />
         </div>
