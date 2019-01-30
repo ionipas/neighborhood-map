@@ -9,7 +9,7 @@ class App extends Component {
   initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 44.43551, lng: 26.102526},
-      zoom: 13,
+      zoom: 15,
       mapTypeControl: true,
       mapTypeControlOptions: {
           style: window.google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
