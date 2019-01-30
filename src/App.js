@@ -54,7 +54,7 @@ class App extends Component {
     fetch('https://api.foursquare.com/v2/venues/explore?' +
       'client_id=AFQH0HM2AZBJP3FGVHJMVXL3RMMGWNPEPVVEXCUOJUG1HRA0' +
       '&client_secret=O4I2FW3K3SCFYTBD2YJZGIUCF2D4JIXKF45VKGSDLSPB1WNT'+
-      '&v=20190130&limit=10&ll=44.435347,26.102419&query=coffee')
+      '&v=20190130&limit=10&ll=44.435347,26.102419')
     .then(res => res.json())
     .then(data => {
       this.setState ({
