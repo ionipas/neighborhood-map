@@ -6,7 +6,8 @@ class App extends Component {
   state = {
     venues: [],
     markers:[],
-    map: ''
+    map: '',
+    query: ''
   }
 
   realMarkers = []
@@ -106,6 +107,10 @@ class App extends Component {
     .catch(err => console.log(err))
   }
 
+  updateQuery = (query) => {
+    this.setState({query: query})
+  }
+
   handleAnimation = (place) => {
     const markerToAnimate = this.realMarkers.find((marker) => marker.id === place)
     markerToAnimate.setAnimation(null)
@@ -123,7 +128,7 @@ class App extends Component {
       <div className="App">
         <div className="search-box">
           <p className="search-label">Search places</p>
-          <input id="search" type="text" placeholder="Search..." />
+          <input id="search" type="text" value={this.state.query} onChange={event => this.updateQuery(event.target.value)} placeholder="Search..." />
           <VenuesList venues={this.state.venues} toggleBounce={this.toggleBounce} />
         </div>
         <div className="Map-container">
