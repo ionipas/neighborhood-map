@@ -24,7 +24,6 @@ class App extends Component {
     })
     this.setState({map: map})
     this.initMarkers()
-    console.log("initmap")
   }
 
   initMarkers = () => {
@@ -60,7 +59,6 @@ class App extends Component {
       })
       return marker
     })
-    console.log("initmarker")
   }
 
   makeMarkerIcon = (markerColor) => {
@@ -89,7 +87,6 @@ class App extends Component {
 
   componentDidMount() {
     this.exploreVenues()
-    console.log("component")
   }
 
   exploreVenues() {
@@ -111,6 +108,16 @@ class App extends Component {
     this.setState({query: query})
   }
 
+  filterVenues = (query) => {
+    if(query) {
+      const word = this.state.query
+      const filteredList = this.state.venues.filter(item => item.venue.categories[0].name.toLowerCase().includes(word))
+      this.setState ({
+        venues: filteredList
+      })
+    }
+  }
+
   handleAnimation = (place) => {
     const markerToAnimate = this.realMarkers.find((marker) => marker.id === place)
     markerToAnimate.setAnimation(null)
@@ -129,7 +136,7 @@ class App extends Component {
         <div className="search-box">
           <p className="search-label">Search places</p>
           <input id="search" type="text" value={this.state.query} onChange={event => this.updateQuery(event.target.value)} placeholder="Search..." />
-          <button id="filter" type="submit">Filter</button>
+          <button id="filter" type="submit" onClick={this.filterVenues}>Filter</button>
           <VenuesList venues={this.state.venues} toggleBounce={this.toggleBounce} />
         </div>
         <div className="Map-container">
