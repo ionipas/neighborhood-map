@@ -45,6 +45,10 @@ input {
   list-style-type: none;
 }
 
+.venue-name:hover {
+  background-color: #48494c;
+}
+
 .Map-container {
   width: 100%;
 }
