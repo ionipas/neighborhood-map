@@ -100,6 +100,7 @@ class App extends Component {
     const markerToAnimate = this.realMarkers.find((marker) => marker.id === place)
     markerToAnimate.setAnimation(null)
     markerToAnimate.setAnimation(window.google.maps.Animation.BOUNCE)
+    setTimeout(function(){ markerToAnimate.setAnimation(null); }, 2100)
   }
 
   toggleBounce = (event) => {
