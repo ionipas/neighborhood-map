@@ -5,7 +5,8 @@ import VenuesList from './components/VenuesList'
 class App extends Component {
   state = {
     venues: [],
-    markers:[]
+    markers:[],
+    map: ''
   }
 
   realMarkers = []
@@ -20,10 +21,17 @@ class App extends Component {
           position: window.google.maps.ControlPosition.TOP_CENTER
       }
     })
+    this.setState({map: map})
+    this.initMarkers()
+    console.log("initmap")
+  }
+
+  initMarkers = () => {
     const defaultIcon = this.makeMarkerIcon('708ec9');
     const highlightedIcon = this.makeMarkerIcon('FFFF24');
 
     this.state.venues.map(item => {
+      const map = this.state.map
       const marker = new window.google.maps.Marker({
         position: {lat: item.venue.location.lat, lng: item.venue.location.lng},
         map: map,
@@ -51,6 +59,7 @@ class App extends Component {
       })
       return marker
     })
+    console.log("initmarker")
   }
 
   makeMarkerIcon = (markerColor) => {
@@ -79,6 +88,7 @@ class App extends Component {
 
   componentDidMount() {
     this.exploreVenues()
+    console.log("component")
   }
 
   exploreVenues() {
