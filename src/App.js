@@ -8,6 +8,8 @@ class App extends Component {
     markers:[]
   }
 
+  realMarkers = []
+
   initMap = () => {
     const map = new window.google.maps.Map(document.getElementById('map'), {
       center: {lat: 44.43551, lng: 26.102526},
@@ -29,6 +31,7 @@ class App extends Component {
         icon: defaultIcon,
         id: item.venue.id
       })
+      this.realMarkers.push(marker)
       this.setState((state) => {
         return {
           markers: this.state.markers.concat([{
@@ -93,13 +96,24 @@ class App extends Component {
     .catch(err => console.log(err))
   }
 
+  handleAnimation = (place) => {
+    const markerToAnimate = this.realMarkers.find((marker) => marker.id === place)
+    markerToAnimate.setAnimation(null)
+    markerToAnimate.setAnimation(window.google.maps.Animation.BOUNCE)
+  }
+
+  toggleBounce = (event) => {
+    const venueId = event.target.getAttribute("data-key")
+    this.handleAnimation(venueId)
+  }
+
   render() {
     return (
       <div className="App">
         <div className="search-box">
           <p className="search-label">Search places</p>
           <input id="search" type="text" placeholder="Search..." />
-          <VenuesList venues={this.state.venues} />
+          <VenuesList venues={this.state.venues} toggleBounce={this.toggleBounce} />
         </div>
         <div className="Map-container">
           <header className="App-header">
