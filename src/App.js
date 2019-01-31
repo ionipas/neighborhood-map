@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import escapeRegExp from 'escape-string-regexp'
 import './App.css';
 import VenuesList from './components/VenuesList'
 
@@ -110,8 +111,8 @@ class App extends Component {
 
   filterVenues = (query) => {
     if(query) {
-      const word = this.state.query
-      const filteredList = this.state.venues.filter(item => item.venue.categories[0].name.toLowerCase().includes(word))
+      const word = new RegExp(escapeRegExp(this.state.query), 'i')
+      const filteredList = this.state.venues.filter(item => word.test(item.venue.categories[0].name))
       this.setState ({
         venues: filteredList
       })
