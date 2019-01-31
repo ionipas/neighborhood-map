@@ -29,13 +29,25 @@ html, body, .root {
   line-height: 35px;
   padding: 0px 10px 0px 10px;
   text-align: left;
-  width: 340px;   
+  width: 400px;   
 }
 
 input {
-  width: 100%;
+  width: 70%;
   height: 35px;
   font-size: calc(6px + 2vmin);
+}
+
+button {
+  width: 25%;
+  height: 41px;
+  font-size: calc(5px + 2vmin);
+  padding: 1px 0px;
+  display: inline-block;
+  background-color: #708ec9;
+  border-width: 1px;
+  border-color: #708ec9;
+  color: white;
 }
 
 .venues-list {

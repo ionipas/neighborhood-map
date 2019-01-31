@@ -129,6 +129,7 @@ class App extends Component {
         <div className="search-box">
           <p className="search-label">Search places</p>
           <input id="search" type="text" value={this.state.query} onChange={event => this.updateQuery(event.target.value)} placeholder="Search..." />
+          <button id="filter" type="submit">Filter</button>
           <VenuesList venues={this.state.venues} toggleBounce={this.toggleBounce} />
         </div>
         <div className="Map-container">
