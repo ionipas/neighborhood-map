@@ -29,7 +29,7 @@ html, body, .root {
   line-height: 35px;
   padding: 0px 10px 0px 10px;
   text-align: left;
-  width: 400px;   
+  width: 400px;
 }
 
 input {
@@ -80,4 +80,46 @@ input {
 
 #map {
   height: 92vh;
+}
+
+.toggle-menu {
+  display: none;
+}
+
+/* #hamburger-menu-toggle-1:checked ~ .search-box {
+  display: initial;
+} */
+
+@media screen and (max-width: 768px) {
+  .search-box-hide {
+    width: 1100px;
+    position:relative;
+    display: none;
+  }
+
+  .search-box {
+    width: 1100px;
+  }
+
+  .toggle-menu {
+    display: inline-block;
+  }
+  .gm-style-mtc {
+    display: none;
+  }
+  .gm-control-active {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .town {
+    display: none;
+  }
+  #search {
+    width: 90%;
+  }
+  #filter {
+    width: 90%;
+  }
 }

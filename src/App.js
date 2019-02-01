@@ -8,7 +8,8 @@ class App extends Component {
     venues: [],
     initialVenues: [],
     map: '',
-    query: ''
+    query: '',
+    class: 'search-box'
   }
 
   realMarkers = []
@@ -141,23 +142,32 @@ class App extends Component {
     this.handleAnimation(venueId)
   }
 
+  toggleMenu() {
+    if (this.state.class === 'search-box') {
+      this.setState({ class: "search-box-hide" })
+    } else {
+      this.setState({ class: "search-box" })
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="search-box">
-          <p className="search-label">Search places</p>
+        <div className={this.state.class} role="search">  
+          <p className="search-label" aria-label="label">Search places</p>        
           <input id="search" type="search" value={this.state.query} onChange={event => this.updateQuery(event.target.value)} placeholder="Search..." />
-            <button className="close-icon" type="reset"></button>
+            <button className="close-icon" aria-label="clear textbox" type="reset"></button>
           <button id="filter" type="submit" onClick={this.filterVenues}>Filter</button>
           <VenuesList venues={this.state.venues} toggleBounce={this.toggleBounce} />
         </div>
+        <button className="toggle-menu" onClick={() => this.toggleMenu()}>Close</button>
         <div className="Map-container">
-          <header className="App-header">
-            <p>
+          <header className="App-header" aria-label="map header" >
+            <p className="town">
               Bucharest, Romania Map
             </p>
           </header>
-          <div id="map"></div>
+          <div id="map" aria-label="Google Map with a marker for each place"></div>
         </div>
       </div>
     );
