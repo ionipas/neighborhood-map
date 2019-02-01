@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import escapeRegExp from 'escape-string-regexp'
 import './App.css';
-import VenuesList from './components/VenuesList'
+import Header from './components/Header'
+import Search from './components/Search'
 
 class App extends Component {
   state = {
@@ -124,6 +125,7 @@ class App extends Component {
       })
       if (filteredList.length === 0) {
         alert("No location found. Please, try another search.")
+        return
       } else {      
         filteredList.map(item => {
           const markerToShow = this.realMarkers.filter(marker => marker.id === item.venue.id)
@@ -157,20 +159,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className={this.state.class} role="search">  
-          <p className="search-label" aria-label="label">Search places</p>        
-          <input id="search" type="search" value={this.state.query} onChange={event => this.updateQuery(event.target.value)} placeholder="Search..." />
-            <button className="close-icon" aria-label="clear textbox" type="reset"></button>
-          <button id="filter" type="submit" onClick={this.filterVenues}>Filter</button>
-          <VenuesList venues={this.state.venues} toggleBounce={this.toggleBounce} />
-        </div>
+        <Search class={this.state.class} 
+                query={this.state.query}
+                updateQuery={this.updateQuery}
+                filterVenues={this.filterVenues}
+                venues={this.state.venues}
+                toggleBounce={this.toggleBounce}
+        />
         <button className="toggle-menu" onClick={() => this.toggleMenu()}>Close</button>
         <div className="Map-container">
-          <header className="App-header" aria-label="map header" >
-            <p className="town">
-              Bucharest, Romania Map
-            </p>
-          </header>
+          <Header />
           <div id="map" aria-label="Google Map with a marker for each place"></div>
         </div>
       </div>
