@@ -6,6 +6,7 @@ import VenuesList from './components/VenuesList'
 class App extends Component {
   state = {
     venues: [],
+    initialVenues: [],
     markers:[],
     map: '',
     query: ''
@@ -98,7 +99,8 @@ class App extends Component {
     .then(res => res.json())
     .then(data => {
       this.setState ({
-        venues: data.response.groups[0].items
+        venues: data.response.groups[0].items,
+        initialVenues: data.response.groups[0].items
       })
     })
     .then(() => this.renderMap())
@@ -106,7 +108,14 @@ class App extends Component {
   }
 
   updateQuery = (query) => {
-    this.setState({query: query})
+    if(query) {
+      this.setState({query: query})
+    } else {
+      this.setState({venues: this.state.initialVenues})
+      this.realMarkers.map(marker => marker.setMap(this.state.map))
+      this.setState({query: ''})
+    }
+    //this.setState({query: query})
   }
 
   filterVenues = (query) => {
@@ -115,6 +124,13 @@ class App extends Component {
       const filteredList = this.state.venues.filter(item => word.test(item.venue.categories[0].name))
       this.setState ({
         venues: filteredList
+      })
+      console.log(filteredList)
+      this.realMarkers.map(marker => marker.setMap(null))
+      filteredList.map(item => {
+        const markerToShow = this.realMarkers.filter(marker => marker.id === item.venue.id)
+        markerToShow.map(item => item.setMap(this.state.map))
+        return markerToShow
       })
     }
   }
