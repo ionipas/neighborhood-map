@@ -125,7 +125,6 @@ class App extends Component {
       this.setState ({
         venues: filteredList
       })
-      console.log(filteredList)
       this.realMarkers.map((marker) => {
         marker.setMap(null)
         return marker
