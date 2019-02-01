@@ -7,7 +7,6 @@ class App extends Component {
   state = {
     venues: [],
     initialVenues: [],
-    markers:[],
     map: '',
     query: ''
   }
@@ -42,13 +41,6 @@ class App extends Component {
         id: item.venue.id
       })
       this.realMarkers.push(marker)
-      this.setState((state) => {
-        return {
-          markers: this.state.markers.concat([{
-            id: marker.id
-          }])
-        }
-      })
       const infowindow = new window.google.maps.InfoWindow({
         content: `<h3>` + item.venue.name + `</h3>` + `<p>` + item.venue.location.address + `</p>`,
       })
