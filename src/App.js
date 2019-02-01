@@ -136,7 +136,8 @@ class App extends Component {
       <div className="App">
         <div className="search-box">
           <p className="search-label">Search places</p>
-          <input id="search" type="text" value={this.state.query} onChange={event => this.updateQuery(event.target.value)} placeholder="Search..." />
+          <input id="search" type="search" value={this.state.query} onChange={event => this.updateQuery(event.target.value)} placeholder="Search..." />
+            <button class="close-icon" type="reset"></button>
           <button id="filter" type="submit" onClick={this.filterVenues}>Filter</button>
           <VenuesList venues={this.state.venues} toggleBounce={this.toggleBounce} />
         </div>
