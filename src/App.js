@@ -98,7 +98,7 @@ class App extends Component {
       })
     })
     .then(() => this.renderMap())
-    .catch(err => console.log(err))
+    .catch(err => alert("App is not responding. Please, check your network access"))
   }
 
   updateQuery = (query) => {
@@ -122,11 +122,15 @@ class App extends Component {
         marker.setMap(null)
         return marker
       })
-      filteredList.map(item => {
-        const markerToShow = this.realMarkers.filter(marker => marker.id === item.venue.id)
-        markerToShow.map(item => item.setMap(this.state.map))
-        return markerToShow
-      })
+      if (filteredList.length === 0) {
+        alert("No location found. Please, try another search.")
+      } else {      
+        filteredList.map(item => {
+          const markerToShow = this.realMarkers.filter(marker => marker.id === item.venue.id)
+          markerToShow.map(item => item.setMap(this.state.map))
+          return markerToShow
+        })
+      }
     }
   }
 
