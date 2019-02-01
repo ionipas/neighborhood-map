@@ -116,7 +116,6 @@ class App extends Component {
       this.realMarkers.map(marker => marker.setMap(this.state.map))
       this.setState({query: ''})
     }
-    //this.setState({query: query})
   }
 
   filterVenues = (query) => {
