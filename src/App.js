@@ -50,14 +50,15 @@ class App extends Component {
         }
       })
       const infowindow = new window.google.maps.InfoWindow({
-        content: `<h3>` + item.venue.name + `</h3>` + `<p>` + item.venue.location.address + `</p>`
+        content: `<h3>` + item.venue.name + `</h3>` + `<p>` + item.venue.location.address + `</p>`,
       })
-      marker.addListener('click', function() {
+      marker.addListener('mouseover', function() {
         infowindow.open(map, marker)
         this.setIcon(highlightedIcon)
       })
-      infowindow.addListener('closeclick', function() {
-        marker.setIcon(defaultIcon)
+      marker.addListener('mouseout', function() {
+        this.setIcon(defaultIcon)
+        infowindow.close(map, marker)
       })
       return marker
     })
@@ -126,7 +127,10 @@ class App extends Component {
         venues: filteredList
       })
       console.log(filteredList)
-      this.realMarkers.map(marker => marker.setMap(null))
+      this.realMarkers.map((marker) => {
+        marker.setMap(null)
+        return marker
+      })
       filteredList.map(item => {
         const markerToShow = this.realMarkers.filter(marker => marker.id === item.venue.id)
         markerToShow.map(item => item.setMap(this.state.map))
