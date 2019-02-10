@@ -1,4 +1,4 @@
-# MyReads
+# Neighborhood Map
 ***
 *Udacity | Front End Web Developer Nanodegree | Project 7: Neighborhood Map*
 ***
@@ -12,12 +12,12 @@ The objective was to build an application using React framework that make reques
 
 ##### `npm start`
 
-Runs the app in the development mode.<br>
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ##### `npm run build`
 
-Builds the app for production to the `build` folder.<br>
+Builds the app for production to the `build` folder.
 
 
 ### Built using
