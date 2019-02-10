@@ -166,7 +166,7 @@ class App extends Component {
                 venues={this.state.venues}
                 toggleBounce={this.toggleBounce}
         />
-        <button className="toggle-menu" onClick={() => this.toggleMenu()}>Close</button>
+        <button className="toggle-menu" onClick={() => this.toggleMenu()}>Search page</button>
         <div className="Map-container">
           <Header />
           <div id="map" aria-label="Google Map with a marker for each place"></div>
